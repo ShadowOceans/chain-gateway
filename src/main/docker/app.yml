@@ -1,0 +1,20 @@
+version: '2'
+services:
+    chain_gateway-app:
+        image: chain_gateway
+        environment:
+            - _JAVA_OPTIONS=-Xmx512m -Xms256m
+            - SPRING_PROFILES_ACTIVE=prod,swagger
+            - SPRING_DATASOURCE_URL=jdbc:mysql://chain_gateway-mysql:3306/chain_gateway?useUnicode=true&characterEncoding=utf8&useSSL=false
+            - JHIPSTER_SLEEP=10 # gives time for the database to boot before the application
+            - SPRING_DATA_JEST_URI=http://chain_gateway-elasticsearch:9200
+        ports:
+            - 8080:8080
+    chain_gateway-mysql:
+        extends:
+            file: mysql.yml
+            service: chain_gateway-mysql
+    chain_gateway-elasticsearch:
+        extends:
+            file: elasticsearch.yml
+            service: chain_gateway-elasticsearch
