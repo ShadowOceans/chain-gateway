@@ -40,6 +40,6 @@ spring:
             - After=2019-01-01T17:42:47.789-07:00[America/Denver] # 如果请求时间大于该时间,则转发
       discovery:
         locator:
-          # 是否可以通过其他服务的serviceId来转发到具体的服务实例。默认为false
+          # 是否可以通过其他服务的serviceId来转发给具体的服务实例。默认为false
           # 为true,自动创建路由,路由访问方式：http://Gateway_HOST:Gateway_PORT/大写的serviceId/**，其中微服务应用名默认大写访问
           enabled: false
