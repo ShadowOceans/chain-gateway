@@ -1,43 +1,12 @@
 spring:
   cloud:
     gateway:
-      #可以根据请求参数,cookie,host,请求时间,请求头等进行校验判断路由, 下面根据先后顺序转发
-      routes:
-        - id: host_route
-          uri: http://httpbin.org:80/get
-          predicates:
-            - Path=/zzzgd/** # 请求地址携带zzzgd的,则转发
-        - id: host_route
-          uri: http://httpbin.org:80/get
-          predicates:
-            - Host=**.csdn.** # 请求域名携带csdn的,则转发
-        - id: query_route
-          uri: http://httpbin.org:80/get
-          predicates:
-            - Query=username, zzz* # 请求参数含有username,且值满足zzz开头的,则转发(对值的匹配可以省略)
-        - id: header_route
-          uri: http://httpbin.org:80/get
-          predicates:
-            - Header=request, \d+ # 如果请求头含有request,且为数字,则转发
-        - id: cookie_route
-          uri: http://httpbin.org:80/get
-          predicates:
-            - Cookie=name, zzzgd # 如果携带cookie,参数名为name,值为zzzgd,则转发
-        - id: path_route
-          uri: http://httpbin.org:80/get
-          predicates:
-            - Path=/zzzgd/** # 请求地址携带zzzgd的,则转发
-        # 路由到其他服务,url需要用[lb://]+[serviceId]
-        - id: service_client
-          uri: lb://service-client
-          predicates:
-            - Path=/to_client/** # 如果请求地址满足/to_client/**,则转发到 service-client 服务
-          filters:
-            - StripPrefix=1 # 去除请求地址中的to_client
-        - id: after_route
-          uri: http://httpbin.org:80/get
-          predicates:
-            - After=2019-01-01T17:42:47.789-07:00[America/Denver] # 如果请求时间大于该时间,则转发
+#      #可以根据请求参数,cookie,host,请求时间,请求头等进行校验判断路由, 下面根据先后顺序转发
+#      routes:
+#        - id: host_route
+#          uri: http://httpbin.org:80/get
+#          predicates:
+#            - Path=/zzzgd/** # 请求地址携带zzzgd的,则转发
       discovery:
         locator:
           # 是否可以通过其他服务的serviceId来转发给具体的服务实例。默认为false
