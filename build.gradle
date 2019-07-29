@@ -1,0 +1,42 @@
+plugins {
+    id 'org.springframework.boot' version '2.1.6.RELEASE'
+    id 'java'
+}
+
+apply plugin: 'io.spring.dependency-management'
+
+group = 'com.bitmart'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+    maven {
+        credentials {
+            username "$mavenPullUser"
+            password "$mavenPullPassword"
+        }
+        url "https://nexus-infra.bitmart.com/repository/maven-public/"
+    }
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.apache.commons:commons-text:1.6'
+    compileOnly 'org.projectlombok:lombok'
+    compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.3'
+    compile 'com.alibaba:fastjson:1.2.27'
+    compile 'com.bitmart:chain-backend-grpc:1.0.0-v1-SNAPSHOT'
+    compile('net.devh:grpc-server-spring-boot-starter:1.4.0.RELEASE')
+    compile 'org.apache.commons:commons-lang3:3.9'
+    compile('net.devh:grpc-client-spring-boot-starter:1.4.1.RELEASE')
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '2.1.6.RELEASE'
+}

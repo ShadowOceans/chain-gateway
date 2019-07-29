@@ -1,0 +1,14 @@
+server:
+    servlet:
+        context-path: /gateway/
+grpc:
+  client:
+    grpc-gateway-backend-server:
+      enableKeepAlive: true
+      keepAliveWithoutCalls: true
+      port: 19898
+      host: 127.0.0.1
+  timeout: 30
+spring:
+  jackson:
+    default-property-inclusion: non_null
